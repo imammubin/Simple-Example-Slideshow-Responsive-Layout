@@ -1,0 +1,138 @@
+<html>
+    <head> 
+        <title> Simple Example Slideshow Responsive Layout | www.imammubin.com </title>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script> 
+ 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>    
+		<div id="slideShow" class="widthPageMax center">
+			<ul> 
+				<li id="slideShowContain">
+					<img src="https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-ash2/254704_218792724811015_6237503_n.jpg" class="widthPageMax" />
+					<div class="title"> 0 </div>
+				</li>
+				<li id="slideShowContain">
+					<img src="https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-ash2/249408_218792788144342_4221225_n.jpg" class="widthPageMax" /> 
+					<div class="title"> 1 </div>
+				</li>
+				<li id="slideShowContain">
+					<img src="https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-prn2/248244_218796048144016_7880301_n.jpg" class="widthPageMax" />
+					<div class="title"> 2 </div>
+				</li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			var duration=2; <!-- 1 second -->
+			$(document).ready(function(){
+				refreshSlide(duration);
+				adjustSlideshowHeight($("#slideShow"));
+				$(window).resize(function(){
+					adjustSlideshowHeight($("#slideShow"));
+				});
+			});
+
+			function adjustSlideshowHeight(object){
+				var width=$(object).width();
+				var height=(width/7)*3;
+				$(object).css({'height':height+'px','max-height':height+'px'});
+			}
+						
+			function refreshSlide(duration){
+				var length=$("#slideShow li").length;
+				var slideShowContainWidth = $("#slideShow ul #slideShowContain").width();
+				var slideShowContainHeight = $("#slideShow ul #slideShowContain").height();
+				var clone=$("#slideShow ul li:eq(0)").clone();
+				var newWidth=(length*100)+'%';
+				$("#slideShow ul").css({'width':newWidth});
+				var i=1; var previous=0; var next=1; var activeSlide='';
+				duration=2000;
+				setInterval(function(){
+					$("#slideShow ul").animate({'left':'-'+(i*100)+'%'},500);												
+					i++;						
+					if(i==length) i=0;
+					},duration
+				);				
+			}
+        </script>
+		<style type="text/css">
+			body{
+				padding:0px;
+				margin:0px;
+			}
+			.widthPageMax{
+				width:100%;
+			}
+			.widthPageDefault{
+				width:980px;
+			}
+			.center{
+				text-align:center;
+				margin:0px auto;
+			}
+			.right{
+				text-align:right;
+			}
+			.left{
+				text-align:left;
+			}
+			
+			#slideShow{
+				overflow:hidden; 
+  				height:320px;
+				max-height:320px;
+ 				background:#ace;
+				padding:0px;
+				margin:0px auto;
+				position:relative;
+			}
+			#slideShow ul{
+				margin:0px auto;
+				padding:0px;
+				height:100%;
+ 				width:100%; 								
+				position:absolute;
+				overflow:hidden;
+				display:flex;
+			}
+			#slideShow li{
+				display:inline-block;
+				float:left;
+				position:relative;
+				width:100%;
+				overflow:hidden;
+			}
+			#slideShowContain img{
+				width:100%;
+				height:auto;
+ 			}
+			#slideShowContain .title{
+				position:absolute;
+				top:0px; 
+				left:0px;
+				height:20px;
+				width:100%;
+				background:rgba(1,1,1,.5);
+				text-align:left;
+				padding:3px;
+				color:#fff;
+			}
+			#fileGithub{
+				width:100%;
+				padding:5px 0px;
+				text-align:center;
+				overflow:hidden;
+			}
+			#fileGithub a{
+				text-decoration:none;
+				font-size:12px;
+				font-family:Verdana, Arial, Helvetica, sans-serif;
+				color:#666;
+			}
+			
+		</style>
+		
+		<div id="fileGithub">
+			<a href="https://github.com/imammubin/Simple-Example-Slideshow-Responsive-Layout">Source Code On Github</a>
+		</div>                           
+   </body>
+ </html>
